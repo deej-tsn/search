@@ -9,6 +9,7 @@ import Error from './pages/Error'
 import About from './pages/About'
 import ForgottenPassword from './pages/ForgottenPassword'
 import {RequireAuth} from './class/RequireAuth'
+import AddPost from './pages/AddPost'
 
 function App() {
 
@@ -26,9 +27,9 @@ function App() {
             <Route path='about' element = {<About/>}/>
             <Route path='forgottenpassword' element = {<ForgottenPassword/>}/>
             <Route path='*' element= {<Error/>}/>
-            <Route path='test' element= {
+            <Route path='createPost' element= {
                             <RequireAuth>
-                              <div>Test</div>
+                              <AddPost/>
                             </RequireAuth>} />
           </Routes>
         
