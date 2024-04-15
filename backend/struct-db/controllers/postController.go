@@ -10,17 +10,17 @@ import (
 type (
 	postRes struct {
 		Title     string `json:"title"`
-		ImageName string `json:"imageName"`
+		ImageURL  string `json:"imageURL"`
 		Body      string `json:"body"`
 		Author    string `json:"author"`
 		CreatedOn string `json:"createdOn"`
 	}
 
 	postReq struct {
-		Title     string `json:"title"`
-		ImageName string `json:"imageName"`
-		Body      string `json:"body"`
-		Author    string `json:"author"`
+		Title    string `json:"title"`
+		ImageURL string `json:"imageURL"`
+		Body     string `json:"body"`
+		Author   string `json:"author"`
 	}
 )
 
@@ -28,7 +28,7 @@ type (
 
 func (h *BaseHandler) GetPostsUser(c echo.Context) error {
 	username := c.Param("id")
-	sqlStatement := "SELECT title, imageName, body, created_on FROM POSTS WHERE author = ? "
+	sqlStatement := "SELECT title, imageURL, body, created_on FROM POSTS WHERE author = ? "
 	posts := []postRes{}
 	rows, err := h.db.Query(sqlStatement, username)
 	if err != nil {
@@ -37,7 +37,7 @@ func (h *BaseHandler) GetPostsUser(c echo.Context) error {
 	defer rows.Close()
 	for rows.Next() {
 		singlePost := new(postRes)
-		err = rows.Scan(&singlePost.Title, &singlePost.ImageName, &singlePost.Body, &singlePost.CreatedOn)
+		err = rows.Scan(&singlePost.Title, &singlePost.ImageURL, &singlePost.Body, &singlePost.CreatedOn)
 		if err != nil {
 			// handle this error
 			return err
@@ -54,7 +54,7 @@ func (h *BaseHandler) GetPostsUser(c echo.Context) error {
 }
 
 func (h *BaseHandler) CreatePost(c echo.Context) error {
-	sqlStatement := "INSERT INTO POSTS (title, image, body, author) VALUES (?, ?, ?, ?)"
+	sqlStatement := "INSERT INTO POSTS (title, imageURL, body, author) VALUES (?, ?, ?, ?)"
 	u := new(postReq)
 	if err := c.Bind(u); err != nil {
 		return err
@@ -73,7 +73,7 @@ func (h *BaseHandler) CreatePost(c echo.Context) error {
 }
 
 func (h *BaseHandler) GetPosts(c echo.Context) error {
-	sqlStatement := "SELECT title, imageName, body, created_on FROM POSTS"
+	sqlStatement := "SELECT title, imageURL, body, author, created_on FROM POSTS"
 	posts := []postRes{}
 	rows, err := h.db.Query(sqlStatement)
 	if err != nil {
@@ -82,7 +82,7 @@ func (h *BaseHandler) GetPosts(c echo.Context) error {
 	defer rows.Close()
 	for rows.Next() {
 		singlePost := new(postRes)
-		err = rows.Scan(&singlePost.Title, &singlePost.ImageName, &singlePost.Body, &singlePost.CreatedOn)
+		err = rows.Scan(&singlePost.Title, &singlePost.ImageURL, &singlePost.Body, &singlePost.Author, &singlePost.CreatedOn)
 		if err != nil {
 			// handle this error
 			return err

@@ -37,6 +37,7 @@ func main() {
 	e.GET("/posts/:id", handler.GetPostsUser)
 	e.GET("/posts/all", handler.GetPosts)
 	e.POST("/posts", handler.GetPostsUser)
+	e.POST("/posts/createPost", handler.CreatePost)
 	/*
 
 		e.PUT("/users/:id", updateUser)
