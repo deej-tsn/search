@@ -28,7 +28,7 @@ function App() {
             <Route path='forgottenpassword' element = {<ForgottenPassword/>}/>
             <Route path='*' element= {<Error/>}/>
             <Route path='createPost' element= {<RequireAuth> 
-                                                <CreatePost/>
+                                                <CreatePost user = {{username: "", id : ""}}/>
                                               </RequireAuth>}/>
           </Routes>
         

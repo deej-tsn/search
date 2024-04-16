@@ -5,7 +5,7 @@ import NavBar from "../components/NavBar"
 function Home(props : {user: {username : string,  id : string}}) {
   console.log(props.user)
   return (
-    <div className=" w-full h-full flex flex-col bg-slate-400">
+    <div className=" w-full h-full flex flex-col bg-neutral-200">
       <NavBar/>
   
 

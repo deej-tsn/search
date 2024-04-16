@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 function CreatePost( props: {user : {username : string ,id : string}}){
+
+    let nav  = useNavigate();
 
     async function insertPOST(event : React.SyntheticEvent) {
         event.preventDefault();
@@ -30,14 +34,16 @@ function CreatePost( props: {user : {username : string ,id : string}}){
         referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
         body: JSON.stringify(data), 
         });
-        const res = await  responseMessages.json();
-        console.log(res);
         
-        if(res.error == ""){
+        
+        if(responseMessages.ok){
             console.log("success")
+            nav("/")
         }else{
-            console.log(res.error)
+            const res = await  responseMessages.json();
+            console.log(res)
         }
+
     }
 
     return (

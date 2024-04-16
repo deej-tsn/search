@@ -14,7 +14,7 @@ function PostContainer(props : {user_id : string}) {
         key={i}
         title={row.title}
         body = {row.body}
-        image = {row.image}/></div> )
+        image = {"test"}/></div> )
         setLoaded(posts)
       }else{
         setLoaded(null);
