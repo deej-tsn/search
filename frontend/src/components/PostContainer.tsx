@@ -10,7 +10,7 @@ function PostContainer(props : {user_id : string}) {
     getPosts().then((response) => {
       if(response){
         console.log(response);
-        let posts = Array.from(response).map((row : any, i) =><div className="flex justify-center items-center"><Post
+        let posts = Array.from(response).map((row : any, i:number) =><div className="flex justify-center items-center"><Post
         key={i}
         title={row.title}
         body = {row.body}
