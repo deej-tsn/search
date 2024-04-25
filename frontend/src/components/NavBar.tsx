@@ -11,7 +11,7 @@ function NavBar() {
         return navigator("/login");
     }
     return (
-        <div className=" w-full h-fit drop-shadow-lg bg-red-300 p-2 mb-3 flex flex-row">
+        <div className=" w-full h-fit drop-shadow-lg bg-red-300 p-2 mb-3 flex flex-row z-10 fixed top-0">
             <div className="w-full flex items-center justify-center relative">
                 <h1 className="text-xl absolute left-2 text-white">Explorer</h1>
                 <SearchBar/>

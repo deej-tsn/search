@@ -11,7 +11,7 @@ function Home(props : {user: {username : string,  id : string}}) {
     
   }
   return (
-    <div className=" w-full h-full flex flex-col bg-neutral-200">
+    <div className=" w-full h-full flex flex-col">
       <NavBar/>
   
 
